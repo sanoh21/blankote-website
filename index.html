@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Blankote Group — Trading · Resources · Global</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --gold:#C9A84C;--gold-light:#F2D06B;--gold-dim:#A67C2E;
+  --gold-pale:rgba(201,168,76,0.10);--gold-border:rgba(201,168,76,0.20);
+  --dark:#06060f;--dark2:#0d0d1a;--dark3:#111120;--dark4:#1a1a30;
+  --white:#ffffff;--off-white:#f5f0e8;--grey:#6666aa;--grey-light:#aaaacc;
+  --cream:#faf7f0;
+}
+html{scroll-behavior:smooth;}
+body{background:var(--dark);color:var(--white);font-family:'Cormorant Garamond',Georgia,serif;}
+::-webkit-scrollbar{width:4px;}
+::-webkit-scrollbar-track{background:var(--dark);}
+::-webkit-scrollbar-thumb{background:var(--gold-dim);border-radius:2px;}
+
+/* NAV */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  padding:0 40px;height:70px;
+  display:flex;align-items:center;justify-content:space-between;
+  transition:all 0.4s ease;
+}
+nav.scrolled{
+  background:rgba(6,6,15,0.96);
+  border-bottom:1px solid var(--gold-border);
+  backdrop-filter:blur(20px);
+}
+.nav-logo{display:flex;gap:12px;align-items:center;cursor:pointer;text-decoration:none;}
+.logo-mark{
+  position:relative;width:36px;height:36px;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+}
+.logo-mark::before{
+  content:'';position:absolute;inset:0;
+  border:2px solid var(--gold);transform:rotate(45deg);border-radius:2px;
+}
+.logo-mark span{
+  font-family:'Playfair Display',Georgia,serif;
+  font-size:16px;font-weight:bold;color:var(--gold);position:relative;z-index:1;
+}
+.logo-text .name{
+  font-family:'Playfair Display',Georgia,serif;
+  font-size:15px;font-weight:bold;letter-spacing:4px;
+  background:linear-gradient(90deg,var(--gold-dim),var(--gold-light));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+}
+.logo-text .sub{font-size:8px;letter-spacing:5px;color:var(--gold);opacity:0.6;}
+.nav-links{display:flex;gap:28px;align-items:center;}
+.nav-link{
+  background:none;border:none;cursor:pointer;
+  font-size:11px;letter-spacing:2px;font-weight:600;
+  color:var(--grey-light);text-transform:uppercase;
+  border-bottom:1px solid transparent;padding-bottom:2px;
+  transition:all 0.3s;font-family:'Cormorant Garamond',Georgia,serif;
+}
+.nav-link:hover,.nav-link.active{color:var(--gold-light);border-bottom-color:var(--gold);}
+.nav-cta{
+  background:linear-gradient(135deg,var(--gold-dim),var(--gold));
+  border:none;border-radius:2px;padding:9px 22px;cursor:pointer;
+  font-size:10px;letter-spacing:2px;font-weight:700;
+  color:var(--dark);text-transform:uppercase;
+  font-family:'Cormorant Garamond',Georgia,serif;
+}
+
+/* PAGES */
+.page{display:none;padding-top:70px;}
+.page.active{display:block;}
+
+/* HERO */
+.hero{
+  min-height:100vh;position:relative;
+  background:linear-gradient(160deg,var(--dark) 0%,var(--dark2) 40%,var(--dark4) 100%);
+  display:flex;align-items:center;justify-content:center;
+  overflow:hidden;
+}
+.hero-grid{
+  position:absolute;inset:0;
+  background-image:linear-gradient(var(--gold-border) 1px,transparent 1px),
+    linear-gradient(90deg,var(--gold-border) 1px,transparent 1px);
+  background-size:60px 60px;opacity:0.15;
+}
+.hero-orb1{
+  position:absolute;top:20%;right:10%;
+  width:400px;height:400px;border-radius:50%;
+  background:radial-gradient(circle,rgba(201,168,76,0.08) 0%,transparent 70%);
+  pointer-events:none;
+}
+.hero-orb2{
+  position:absolute;bottom:15%;left:5%;
+  width:300px;height:300px;border-radius:50%;
+  background:radial-gradient(circle,rgba(201,168,76,0.05) 0%,transparent 70%);
+  pointer-events:none;
+}
+.hero-top-line{position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);}
+.hero-content{
+  text-align:center;padding:120px 40px 80px;
+  position:relative;z-index:1;max-width:900px;
+}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--gold-pale);border:1px solid var(--gold-border);
+  border-radius:20px;padding:6px 16px;margin-bottom:40px;
+  font-size:10px;letter-spacing:3px;color:var(--gold);
+}
+.hero-badge-dot{width:6px;height:6px;border-radius:50%;background:var(--gold);display:inline-block;}
+.hero-logo-mark{margin-bottom:20px;}
+.hero-title{
+  font-size:clamp(52px,9vw,96px);
+  font-family:'Playfair Display',Georgia,serif;
+  font-weight:900;margin:16px 0 8px;line-height:1.0;letter-spacing:8px;
+  background:linear-gradient(135deg,var(--gold-dim) 0%,var(--gold-light) 50%,var(--gold-dim) 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+}
+.hero-subtitle{
+  font-size:clamp(14px,2.5vw,20px);letter-spacing:14px;
+  color:var(--gold);opacity:0.7;margin-bottom:32px;
+}
+.gold-divider{height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);opacity:0.3;}
+.hero-desc{
+  margin-top:32px;font-size:17px;line-height:1.9;
+  color:var(--grey-light);max-width:580px;margin:32px auto 0;
+}
+.hero-buttons{display:flex;gap:16px;justify-content:center;margin-top:48px;flex-wrap:wrap;}
+.btn-primary{
+  background:linear-gradient(135deg,var(--gold-dim),var(--gold));
+  border:none;border-radius:2px;padding:15px 40px;cursor:pointer;
+  font-size:11px;letter-spacing:3px;font-weight:700;
+  color:var(--dark);text-transform:uppercase;
+  font-family:'Cormorant Garamond',Georgia,serif;transition:opacity 0.2s;
+}
+.btn-secondary{
+  background:transparent;border:1px solid var(--gold);
+  border-radius:2px;padding:15px 40px;cursor:pointer;
+  font-size:11px;letter-spacing:3px;font-weight:600;
+  color:var(--gold);text-transform:uppercase;
+  font-family:'Cormorant Garamond',Georgia,serif;transition:opacity 0.2s;
+}
+.btn-primary:hover,.btn-secondary:hover{opacity:0.85;}
+.scroll-indicator{
+  position:absolute;bottom:32px;left:50%;transform:translateX(-50%);
+  display:flex;flex-direction:column;align-items:center;gap:8px;opacity:0.4;
+}
+.scroll-text{font-size:9px;letter-spacing:3px;color:var(--gold);}
+.scroll-line{width:1px;height:40px;background:linear-gradient(var(--gold),transparent);}
+
+/* STATS */
+.stats-section{background:var(--cream);padding:80px 40px;position:relative;}
+.stats-top-line{position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,transparent,var(--gold),transparent);}
+.stats-grid{max-width:900px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:40px;}
+.stat-item{text-align:center;}
+.stat-val{
+  font-size:54px;font-family:'Playfair Display',Georgia,serif;
+  font-weight:bold;color:var(--gold-dim);line-height:1;
+}
+.stat-label{font-size:11px;letter-spacing:2px;color:#666;margin-top:8px;text-transform:uppercase;}
+
+/* DIVISIONS */
+.divisions-section{background:var(--dark2);padding:100px 40px;}
+.section-inner{max-width:1100px;margin:0 auto;}
+.section-header{text-align:center;margin-bottom:64px;}
+.tag{
+  font-size:10px;letter-spacing:3px;font-weight:600;color:var(--gold);
+  text-transform:uppercase;border-bottom:1px solid var(--gold-border);
+  padding-bottom:4px;display:inline-block;
+}
+.section-title{
+  margin-top:16px;font-size:clamp(28px,4vw,42px);
+  font-family:'Playfair Display',Georgia,serif;color:var(--white);letter-spacing:2px;
+}
+.section-title.dark{color:#222;}
+.divisions-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+.division-card{
+  background:linear-gradient(135deg,rgba(255,255,255,0.03),rgba(255,255,255,0.01));
+  border:1px solid var(--gold-border);border-radius:4px;padding:32px 28px;
+  position:relative;overflow:hidden;transition:transform 0.3s,border-color 0.3s;
+}
+.division-card:hover{transform:translateY(-4px);border-color:rgba(201,168,76,0.4);}
+.division-card-top-bar{position:absolute;top:0;left:0;right:0;height:2px;opacity:0.6;}
+.division-icon{font-size:32px;margin-bottom:16px;}
+.division-name{
+  font-size:14px;font-weight:bold;color:var(--white);
+  font-family:'Playfair Display',Georgia,serif;margin-bottom:8px;letter-spacing:1px;
+}
+.division-desc{font-size:12px;color:var(--grey-light);line-height:1.7;margin-bottom:16px;}
+.division-badge{
+  font-size:9px;letter-spacing:2px;border-radius:12px;
+  padding:3px 10px;display:inline-block;border:1px solid;
+}
+
+/* QUOTE */
+.quote-section{background:var(--off-white);padding:100px 40px;}
+.quote-inner{max-width:700px;margin:0 auto;text-align:center;}
+.quote-mark{font-size:60px;color:var(--gold-dim);line-height:1;margin-bottom:8px;font-family:Georgia,serif;}
+.quote-text{
+  font-size:clamp(18px,3vw,26px);
+  font-family:'Playfair Display',Georgia,serif;
+  color:#333;line-height:1.6;font-style:italic;margin:0 0 32px;
+}
+.quote-author{margin-top:20px;font-size:11px;letter-spacing:3px;color:var(--gold-dim);}
+
+/* CTA SECTION */
+.cta-section{
+  background:var(--dark);padding:80px 40px;text-align:center;
+  border-top:1px solid var(--gold-border);
+}
+.cta-title{
+  margin-top:16px;font-size:32px;
+  font-family:'Playfair Display',Georgia,serif;color:var(--white);margin-bottom:32px;
+}
+
+/* ABOUT */
+.about-hero,.services-hero,.contact-hero{
+  background:linear-gradient(160deg,var(--dark) 0%,var(--dark4) 100%);
+  padding:100px 40px;text-align:center;position:relative;overflow:hidden;
+}
+.page-hero-grid{
+  position:absolute;inset:0;
+  background-image:linear-gradient(var(--gold-border) 1px,transparent 1px),
+    linear-gradient(90deg,var(--gold-border) 1px,transparent 1px);
+  background-size:60px 60px;opacity:0.1;
+}
+.page-hero-content{position:relative;}
+.page-title{
+  margin-top:20px;font-size:clamp(36px,5vw,56px);
+  font-family:'Playfair Display',Georgia,serif;color:var(--white);letter-spacing:2px;
+}
+
+/* STORY */
+.story-section{background:var(--cream);padding:100px 40px;}
+.story-grid{max-width:900px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;}
+.story-subtitle{
+  margin-top:16px;font-size:32px;
+  font-family:'Playfair Display',Georgia,serif;color:#222;margin-bottom:24px;
+}
+.story-text{font-size:15px;color:#555;line-height:1.9;margin-bottom:16px;}
+.story-quote{margin-top:32px;padding-left:20px;border-left:3px solid var(--gold);}
+.story-quote p{font-size:14px;color:var(--gold-dim);font-style:italic;}
+.story-card{
+  background:var(--dark2);border:1px solid var(--gold-border);
+  border-radius:4px;padding:40px;position:relative;overflow:hidden;
+}
+.story-card-line{position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--gold-dim),var(--gold-light));}
+.story-card-name{
+  font-size:22px;font-weight:bold;font-family:'Playfair Display',Georgia,serif;
+  color:var(--gold-light);letter-spacing:3px;margin-top:20px;
+}
+.story-card-sub{font-size:11px;letter-spacing:8px;color:var(--gold);opacity:0.6;}
+.story-card-offices{font-size:11px;color:var(--grey);line-height:2;margin-top:20px;}
+
+/* VALUES */
+.values-section{background:var(--dark2);padding:100px 40px;}
+.values-grid{max-width:1000px;margin:0 auto;display:grid;grid-template-columns:repeat(2,1fr);gap:24px;margin-top:64px;}
+.value-card{
+  background:rgba(255,255,255,0.03);border:1px solid var(--gold-border);
+  border-radius:4px;padding:36px;display:flex;gap:20px;
+}
+.value-icon{font-size:28px;flex-shrink:0;}
+.value-title{font-size:14px;font-weight:bold;color:var(--gold-light);margin-bottom:10px;letter-spacing:1px;}
+.value-desc{font-size:13px;color:var(--grey-light);line-height:1.8;}
+
+/* TIMELINE */
+.timeline-section{background:var(--off-white);padding:100px 40px;}
+.timeline-inner{max-width:800px;margin:0 auto;}
+.timeline-header{text-align:center;margin-bottom:64px;}
+.timeline-item{display:flex;gap:32px;margin-bottom:40px;}
+.timeline-left{text-align:center;flex-shrink:0;width:80px;}
+.timeline-circle{
+  width:48px;height:48px;border-radius:50%;
+  border:2px solid #ccc;display:flex;align-items:center;justify-content:center;
+  margin:0 auto;font-size:11px;font-weight:bold;color:#999;
+}
+.timeline-circle.active{border-color:var(--gold);background:var(--gold-pale);color:var(--gold-dim);}
+.timeline-line{width:1px;height:40px;background:#ddd;margin:8px auto 0;}
+.timeline-content{padding-top:10px;}
+.timeline-title{
+  font-size:16px;font-weight:bold;color:#333;margin-bottom:6px;
+  font-family:'Playfair Display',Georgia,serif;
+}
+.timeline-title.active{color:var(--gold-dim);}
+.timeline-desc{font-size:13px;color:#666;line-height:1.7;}
+
+/* SERVICES */
+.services-grid-section{background:var(--dark2);padding:100px 40px;}
+.services-grid{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(2,1fr);gap:24px;}
+.service-card{
+  background:rgba(255,255,255,0.02);border:1px solid var(--gold-border);
+  border-radius:4px;padding:36px;position:relative;overflow:hidden;
+}
+.service-card-left-bar{position:absolute;top:0;left:0;bottom:0;width:3px;}
+.service-card-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:20px;}
+.service-icon{font-size:28px;margin-bottom:12px;}
+.service-name{
+  font-size:16px;font-weight:bold;font-family:'Playfair Display',Georgia,serif;
+  color:var(--white);margin-bottom:4px;
+}
+.service-subtitle{font-size:11px;letter-spacing:1px;}
+.service-badge{
+  font-size:9px;letter-spacing:2px;border-radius:12px;
+  padding:4px 12px;flex-shrink:0;border:1px solid;
+}
+.service-divider{height:1px;background:linear-gradient(90deg,transparent,var(--gold-border),transparent);margin:0 0 20px;}
+.service-item{display:flex;gap:10px;align-items:flex-start;margin-bottom:10px;font-size:12px;color:var(--grey-light);line-height:1.6;}
+.service-arrow{color:var(--gold);flex-shrink:0;margin-top:2px;}
+
+/* PROCESS */
+.process-section{background:var(--cream);padding:100px 40px;}
+.process-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:32px;margin-top:64px;max-width:900px;margin:64px auto 0;}
+.process-num{
+  font-size:36px;font-family:'Playfair Display',Georgia,serif;
+  color:var(--gold-dim);font-weight:bold;margin-bottom:12px;
+}
+.process-title{font-size:14px;font-weight:bold;color:#333;margin-bottom:8px;}
+.process-desc{font-size:12px;color:#777;line-height:1.7;}
+
+/* CONTACT */
+.contact-section{background:var(--dark2);padding:100px 40px;}
+.contact-grid{max-width:1000px;margin:0 auto;display:grid;grid-template-columns:1fr 1.5fr;gap:80px;}
+.contact-info-title{
+  margin-top:16px;font-size:28px;
+  font-family:'Playfair Display',Georgia,serif;color:var(--white);margin-bottom:32px;
+}
+.office-card{
+  padding:20px 24px;margin-bottom:16px;
+  background:rgba(255,255,255,0.03);border:1px solid var(--gold-border);border-radius:4px;
+}
+.office-inner{display:flex;gap:12px;align-items:center;}
+.office-flag{font-size:20px;}
+.office-city{font-size:13px;font-weight:bold;color:var(--white);}
+.office-role{font-size:10px;color:var(--gold);letter-spacing:1px;margin-top:2px;}
+.office-email{font-size:11px;color:var(--grey);margin-top:4px;}
+.contact-details{margin-top:32px;font-size:12px;color:var(--grey);line-height:2.2;}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;}
+.form-input{
+  width:100%;background:rgba(255,255,255,0.04);
+  border:1px solid var(--gold-border);border-radius:2px;
+  padding:14px 16px;color:var(--white);font-size:13px;
+  font-family:'Cormorant Garamond',Georgia,serif;outline:none;
+  transition:border-color 0.3s;
+}
+.form-input:focus{border-color:rgba(201,168,76,0.5);}
+.form-input::placeholder{color:#555577;}
+textarea.form-input{resize:vertical;margin-bottom:20px;}
+.form-note{margin-top:12px;font-size:10px;color:var(--grey);text-align:center;}
+.success-box{
+  text-align:center;padding:60px 40px;
+  border:1px solid var(--gold);border-radius:4px;background:var(--gold-pale);
+}
+.success-icon{font-size:48px;margin-bottom:20px;}
+.success-title{
+  font-size:20px;font-family:'Playfair Display',Georgia,serif;
+  color:var(--gold-light);margin-bottom:12px;
+}
+.success-desc{font-size:13px;color:var(--grey-light);}
+
+/* CONTACT BOTTOM */
+.contact-bottom{background:var(--cream);padding:60px 40px;text-align:center;}
+.contact-bottom-tag{font-size:12px;color:#888;letter-spacing:2px;}
+.contact-bottom-text{margin-top:8px;font-size:13px;font-family:'Playfair Display',Georgia,serif;color:#444;}
+
+/* FOOTER */
+footer{background:var(--dark);border-top:1px solid var(--gold-border);padding:48px 40px 32px;}
+.footer-inner{max-width:1100px;margin:0 auto;}
+.footer-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:40px;flex-wrap:wrap;gap:32px;}
+.footer-logo{display:flex;gap:12px;align-items:center;margin-bottom:12px;}
+.footer-info{font-size:11px;color:var(--grey);line-height:1.8;}
+.footer-cols{display:flex;gap:60px;flex-wrap:wrap;}
+.footer-col-title{font-size:10px;letter-spacing:3px;color:var(--gold);margin-bottom:16px;}
+.footer-link{font-size:12px;color:var(--grey);margin-bottom:8px;cursor:pointer;transition:color 0.2s;display:block;}
+.footer-link:hover{color:var(--gold-light);}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;margin-top:24px;}
+.footer-copy{font-size:10px;color:var(--grey);}
+.footer-tagline{font-size:10px;color:var(--grey);letter-spacing:2px;}
+
+/* ANIMATIONS */
+.fade-in{opacity:0;transform:translateY(30px);transition:opacity 0.8s ease,transform 0.8s ease;}
+.fade-in.visible{opacity:1;transform:translateY(0);}
+.fade-left{opacity:0;transform:translateX(-30px);transition:opacity 0.8s ease,transform 0.8s ease;}
+.fade-left.visible{opacity:1;transform:translateX(0);}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a class="nav-logo" onclick="showPage('home')">
+    <div class="logo-mark"><span>B</span></div>
+    <div class="logo-text">
+      <div class="name">BLANKOTE</div>
+      <div class="sub">GROUP</div>
+    </div>
+  </a>
+  <div class="nav-links">
+    <button class="nav-link active" onclick="showPage('home')">Home</button>
+    <button class="nav-link" onclick="showPage('about')">About</button>
+    <button class="nav-link" onclick="showPage('services')">Services</button>
+    <button class="nav-link" onclick="showPage('contact')">Contact</button>
+    <button class="nav-cta" onclick="showPage('contact')">Get In Touch</button>
+  </div>
+</nav>
+
+<!-- HOME -->
+<div id="page-home" class="page active">
+  <div class="hero">
+    <div class="hero-grid"></div>
+    <div class="hero-orb1"></div>
+    <div class="hero-orb2"></div>
+    <div class="hero-top-line"></div>
+    <div class="hero-content">
+      <div class="hero-badge">
+        <span class="hero-badge-dot"></span>
+        ESTABLISHED 2026 · FRANCE &amp; NIGERIA
+      </div>
+      <div class="hero-logo-mark">
+        <div class="logo-mark" style="width:72px;height:72px;margin:0 auto;">
+          <span style="font-size:32px;">B</span>
+        </div>
+      </div>
+      <h1 class="hero-title">BLANKOTE</h1>
+      <div class="hero-subtitle">GROUP</div>
+      <div class="gold-divider" style="width:200px;margin:0 auto;"></div>
+      <p class="hero-desc">
+        A multi-sector holding company building bridges between China, France and Africa.<br>
+        Trading · Resources · Global.
+      </p>
+      <div class="hero-buttons">
+        <button class="btn-primary" onclick="showPage('services')">Our Divisions</button>
+        <button class="btn-secondary" onclick="showPage('contact')">Contact Us</button>
+      </div>
+    </div>
+    <div class="scroll-indicator">
+      <div class="scroll-text">SCROLL</div>
+      <div class="scroll-line"></div>
+    </div>
+  </div>
+
+  <!-- STATS -->
+  <div class="stats-section">
+    <div class="stats-top-line"></div>
+    <div class="stats-grid fade-in">
+      <div class="stat-item"><div class="stat-val">2</div><div class="stat-label">Founding Partners</div></div>
+      <div class="stat-item"><div class="stat-val">3</div><div class="stat-label">Continents</div></div>
+      <div class="stat-item"><div class="stat-val">6</div><div class="stat-label">Future Divisions</div></div>
+      <div class="stat-item"><div class="stat-val">∞</div><div class="stat-label">Ambition</div></div>
+    </div>
+  </div>
+
+  <!-- DIVISIONS -->
+  <div class="divisions-section">
+    <div class="section-inner">
+      <div class="section-header fade-in">
+        <span class="tag">Our Structure</span>
+        <h2 class="section-title">Six Divisions. One Vision.</h2>
+      </div>
+      <div class="divisions-grid fade-in">
+        <div class="division-card">
+          <div class="division-card-top-bar" style="background:#2E7D4F;"></div>
+          <div class="division-icon">🌾</div>
+          <div class="division-name">Blankote Trading</div>
+          <div class="division-desc">Fresh garlic &amp; agri-commodities import from China to Nigeria. Wholesale distribution across West Africa.</div>
+          <span class="division-badge" style="color:#2E7D4F;border-color:rgba(46,125,79,0.4);background:rgba(46,125,79,0.15);">Active 2026</span>
+        </div>
+        <div class="division-card">
+          <div class="division-card-top-bar" style="background:#1565C0;"></div>
+          <div class="division-icon">🚚</div>
+          <div class="division-name">Blankote Logistics</div>
+          <div class="division-desc">End-to-end freight, customs clearance and warehousing between China, France and Nigeria.</div>
+          <span class="division-badge" style="color:#1565C0;border-color:rgba(21,101,192,0.4);background:rgba(21,101,192,0.15);">2027</span>
+        </div>
+        <div class="division-card">
+          <div class="division-card-top-bar" style="background:#6A1E9E;"></div>
+          <div class="division-icon">⛏️</div>
+          <div class="division-name">Blankote Resources</div>
+          <div class="division-desc">Precious stones, minerals and raw material trading across Africa and international markets.</div>
+          <span class="division-badge" style="color:#6A1E9E;border-color:rgba(106,30,158,0.4);background:rgba(106,30,158,0.15);">2028</span>
+        </div>
+        <div class="division-card">
+          <div class="division-card-top-bar" style="background:#B71C1C;"></div>
+          <div class="division-icon">🛢️</div>
+          <div class="division-name">Blankote Energy</div>
+          <div class="division-desc">Oil, gas and petroleum products trading and distribution across West Africa.</div>
+          <span class="division-badge" style="color:#B71C1C;border-color:rgba(183,28,28,0.4);background:rgba(183,28,28,0.15);">2030+</span>
+        </div>
+        <div class="division-card">
+          <div class="division-card-top-bar" style="background:#00695C;"></div>
+          <div class="division-icon">🌍</div>
+          <div class="division-name">Blankote International</div>
+          <div class="division-desc">European and Asian operations hub — France office and China sourcing bureau.</div>
+          <span class="division-badge" style="color:#00695C;border-color:rgba(0,105,92,0.4);background:rgba(0,105,92,0.15);">2027</span>
+        </div>
+        <div class="division-card">
+          <div class="division-card-top-bar" style="background:#E65100;"></div>
+          <div class="division-icon">🏗️</div>
+          <div class="division-name">Blankote Properties</div>
+          <div class="division-desc">Commercial real estate, industrial parks and logistics infrastructure across Nigeria.</div>
+          <span class="division-badge" style="color:#E65100;border-color:rgba(230,81,0,0.4);background:rgba(230,81,0,0.15);">2030+</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- QUOTE -->
+  <div class="quote-section">
+    <div class="quote-inner fade-in">
+      <div class="quote-mark">"</div>
+      <p class="quote-text">An empire is built brick by brick —<br>the first brick is laid today.</p>
+      <div class="gold-divider" style="width:80px;margin:0 auto;"></div>
+      <div class="quote-author">BLANKOTE GROUP — FOUNDED 2026</div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-section">
+    <span class="tag">Ready to Partner?</span>
+    <h2 class="cta-title">Let's Build Something Together</h2>
+    <button class="btn-primary" onclick="showPage('contact')">Contact Blankote Group</button>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<div id="page-about" class="page">
+  <div class="about-hero">
+    <div class="page-hero-grid"></div>
+    <div class="page-hero-content">
+      <span class="tag">Our Story</span>
+      <h1 class="page-title">About Blankote Group</h1>
+    </div>
+  </div>
+  <div class="story-section">
+    <div class="story-grid fade-left">
+      <div>
+        <span class="tag">The Name</span>
+        <h2 class="story-subtitle">A Name That Carries Weight</h2>
+        <p class="story-text">Blankote is more than a brand — it is a tribute. The name comes from the nickname of our founder's father, a man whose legacy and values inspire every business decision we make.</p>
+        <p class="story-text">Every shipment we send, every partnership we build, every market we enter carries this name forward. Building Blankote Group is an act of honour.</p>
+        <div class="story-quote"><p>"We don't just build a company. We build a legacy."</p></div>
+      </div>
+      <div>
+        <div class="story-card">
+          <div class="story-card-line"></div>
+          <div class="logo-mark" style="width:60px;height:60px;"><span style="font-size:26px;">B</span></div>
+          <div class="story-card-name">BLANKOTE</div>
+          <div class="story-card-sub">GROUP</div>
+          <div class="gold-divider" style="margin-top:16px;"></div>
+          <div class="story-card-offices">
+            <div>🇫🇷 France — Europe Operations</div>
+            <div>🇳🇬 Nigeria — West Africa Hub</div>
+            <div>🇨🇳 China — Asia Sourcing</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="values-section">
+    <div style="text-align:center;">
+      <span class="tag">What We Stand For</span>
+      <h2 class="section-title" style="margin-top:16px;">Our Core Values</h2>
+    </div>
+    <div class="values-grid fade-in">
+      <div class="value-card"><div class="value-icon">⚡</div><div><div class="value-title">Reliability</div><div class="value-desc">Every delivery on time, every product as promised. Our reputation is built on consistency.</div></div></div>
+      <div class="value-card"><div class="value-icon">🔒</div><div><div class="value-title">Integrity</div><div class="value-desc">Full transparency in all transactions. Every centime tracked. Every partner respected.</div></div></div>
+      <div class="value-card"><div class="value-icon">🌱</div><div><div class="value-title">Growth</div><div class="value-desc">Every profit reinvested. Every shipment larger than the last. We build for the long term.</div></div></div>
+      <div class="value-card"><div class="value-icon">🌍</div><div><div class="value-title">African Vision</div><div class="value-desc">We believe in Africa's potential. We build bridges between continents to unlock it.</div></div></div>
+    </div>
+  </div>
+  <div class="timeline-section">
+    <div class="timeline-inner">
+      <div class="timeline-header">
+        <span class="tag">The Roadmap</span>
+        <h2 class="section-title dark" style="margin-top:16px;">Our Journey</h2>
+      </div>
+      <div class="fade-in">
+        <div class="timeline-item">
+          <div class="timeline-left"><div class="timeline-circle active">2026</div><div class="timeline-line"></div></div>
+          <div class="timeline-content"><div class="timeline-title active">Foundation</div><div class="timeline-desc">Blankote Trading launches. First shipment of fresh garlic from China to Lagos, Nigeria.</div></div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-left"><div class="timeline-circle">2027</div><div class="timeline-line"></div></div>
+          <div class="timeline-content"><div class="timeline-title">Expansion</div><div class="timeline-desc">Blankote Logistics and International offices open. 20ft container shipments begin.</div></div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-left"><div class="timeline-circle">2028</div><div class="timeline-line"></div></div>
+          <div class="timeline-content"><div class="timeline-title">Diversification</div><div class="timeline-desc">Blankote Resources enters the precious stones and minerals market across Africa.</div></div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-left"><div class="timeline-circle">2030+</div></div>
+          <div class="timeline-content"><div class="timeline-title">Empire</div><div class="timeline-desc">Blankote Energy, Properties. Pan-African distribution. A true multi-sector group.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<div id="page-services" class="page">
+  <div class="services-hero">
+    <div class="page-hero-grid"></div>
+    <div class="page-hero-content">
+      <span class="tag">What We Do</span>
+      <h1 class="page-title">Our Divisions &amp; Services</h1>
+      <p style="margin-top:20px;font-size:15px;color:var(--grey-light);max-width:500px;margin:20px auto 0;line-height:1.8;">Six specialized divisions. One holding company. A single vision to build Africa's next great business empire.</p>
+    </div>
+  </div>
+  <div class="services-grid-section">
+    <div class="services-grid fade-in">
+      <div class="service-card"><div class="service-card-left-bar" style="background:#2E7D4F;"></div><div class="service-card-header"><div><div class="service-icon">🌾</div><div class="service-name">Import &amp; Wholesale Trading</div><div class="service-subtitle" style="color:#2E7D4F;">Blankote Trading</div></div><span class="service-badge" style="color:#2E7D4F;border-color:rgba(46,125,79,0.4);background:rgba(46,125,79,0.15);">Active</span></div><div class="service-divider"></div><div class="service-item"><span class="service-arrow">→</span>Fresh garlic import — China to Nigeria</div><div class="service-item"><span class="service-arrow">→</span>Wholesale distribution to market traders</div><div class="service-item"><span class="service-arrow">→</span>Commodities sourcing from Asia</div><div class="service-item"><span class="service-arrow">→</span>Quality-controlled Grade A products</div></div>
+      <div class="service-card"><div class="service-card-left-bar" style="background:#1565C0;"></div><div class="service-card-header"><div><div class="service-icon">🚚</div><div class="service-name">Freight &amp; Logistics</div><div class="service-subtitle" style="color:#1565C0;">Blankote Logistics</div></div><span class="service-badge" style="color:#1565C0;border-color:rgba(21,101,192,0.4);background:rgba(21,101,192,0.15);">2027</span></div><div class="service-divider"></div><div class="service-item"><span class="service-arrow">→</span>LCL and FCL sea freight China — Nigeria</div><div class="service-item"><span class="service-arrow">→</span>Customs clearance at Lagos Apapa Port</div><div class="service-item"><span class="service-arrow">→</span>Cold storage and warehousing Lagos &amp; Kano</div><div class="service-item"><span class="service-arrow">→</span>Last-mile delivery to wholesale markets</div></div>
+      <div class="service-card"><div class="service-card-left-bar" style="background:#6A1E9E;"></div><div class="service-card-header"><div><div class="service-icon">⛏️</div><div class="service-name">Mining &amp; Minerals</div><div class="service-subtitle" style="color:#6A1E9E;">Blankote Resources</div></div><span class="service-badge" style="color:#6A1E9E;border-color:rgba(106,30,158,0.4);background:rgba(106,30,158,0.15);">2028</span></div><div class="service-divider"></div><div class="service-item"><span class="service-arrow">→</span>Precious stones — tourmaline, sapphire, garnet</div><div class="service-item"><span class="service-arrow">→</span>Industrial minerals trading Nigeria &amp; Angola</div><div class="service-item"><span class="service-arrow">→</span>Africa-Asia-Europe export pipeline</div><div class="service-item"><span class="service-arrow">→</span>Joint venture partnerships</div></div>
+      <div class="service-card"><div class="service-card-left-bar" style="background:#B71C1C;"></div><div class="service-card-header"><div><div class="service-icon">🛢️</div><div class="service-name">Oil &amp; Gas Trading</div><div class="service-subtitle" style="color:#B71C1C;">Blankote Energy</div></div><span class="service-badge" style="color:#B71C1C;border-color:rgba(183,28,28,0.4);background:rgba(183,28,28,0.15);">2030+</span></div><div class="service-divider"></div><div class="service-item"><span class="service-arrow">→</span>Crude oil trading Nigeria &amp; Angola</div><div class="service-item"><span class="service-arrow">→</span>Petroleum products distribution West Africa</div><div class="service-item"><span class="service-arrow">→</span>LPG gas distribution network</div><div class="service-item"><span class="service-arrow">→</span>Service station network Nigeria</div></div>
+      <div class="service-card"><div class="service-card-left-bar" style="background:#00695C;"></div><div class="service-card-header"><div><div class="service-icon">🌍</div><div class="service-name">International Operations</div><div class="service-subtitle" style="color:#00695C;">Blankote International</div></div><span class="service-badge" style="color:#00695C;border-color:rgba(0,105,92,0.4);background:rgba(0,105,92,0.15);">2027</span></div><div class="service-divider"></div><div class="service-item"><span class="service-arrow">→</span>France office — European sourcing &amp; admin</div><div class="service-item"><span class="service-arrow">→</span>China bureau — Guangzhou supplier relations</div><div class="service-item"><span class="service-arrow">→</span>Investor relations &amp; fundraising</div><div class="service-item"><span class="service-arrow">→</span>Multi-jurisdiction compliance</div></div>
+      <div class="service-card"><div class="service-card-left-bar" style="background:#E65100;"></div><div class="service-card-header"><div><div class="service-icon">🏗️</div><div class="service-name">Real Estate &amp; Infrastructure</div><div class="service-subtitle" style="color:#E65100;">Blankote Properties</div></div><span class="service-badge" style="color:#E65100;border-color:rgba(230,81,0,0.4);background:rgba(230,81,0,0.15);">2030+</span></div><div class="service-divider"></div><div class="service-item"><span class="service-arrow">→</span>Commercial warehouses and offices Nigeria</div><div class="service-item"><span class="service-arrow">→</span>Industrial logistics parks</div><div class="service-item"><span class="service-arrow">→</span>Residential investment portfolio</div><div class="service-item"><span class="service-arrow">→</span>Port terminal infrastructure</div></div>
+    </div>
+  </div>
+  <div class="process-section">
+    <div style="text-align:center;">
+      <span class="tag">How We Work</span>
+      <h2 class="section-title dark" style="margin-top:16px;">Our Process</h2>
+    </div>
+    <div class="process-grid fade-in">
+      <div style="text-align:center;"><div class="process-num">01</div><div class="process-title">Source</div><div class="process-desc">We identify quality products and reliable suppliers in China and across Asia.</div></div>
+      <div style="text-align:center;"><div class="process-num">02</div><div class="process-title">Ship</div><div class="process-desc">We manage freight, documentation and customs clearance end to end.</div></div>
+      <div style="text-align:center;"><div class="process-num">03</div><div class="process-title">Sell</div><div class="process-desc">We distribute directly to wholesale traders in key Nigerian markets.</div></div>
+      <div style="text-align:center;"><div class="process-num">04</div><div class="process-title">Scale</div><div class="process-desc">We reinvest every profit to grow volume, add products and expand markets.</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<div id="page-contact" class="page">
+  <div class="contact-hero">
+    <div class="page-hero-grid"></div>
+    <div class="page-hero-content">
+      <span class="tag">Get In Touch</span>
+      <h1 class="page-title">Contact Us</h1>
+    </div>
+  </div>
+  <div class="contact-section">
+    <div class="contact-grid">
+      <div>
+        <span class="tag">Our Offices</span>
+        <h2 class="contact-info-title">Let's Work Together</h2>
+        <div class="office-card"><div class="office-inner"><div class="office-flag">🇫🇷</div><div><div class="office-city">Paris, France</div><div class="office-role">Europe Operations</div><div class="office-email">contact@blankotegroup.com</div></div></div></div>
+        <div class="office-card"><div class="office-inner"><div class="office-flag">🇳🇬</div><div><div class="office-city">Lagos, Nigeria</div><div class="office-role">West Africa Hub</div><div class="office-email">nigeria@blankotegroup.com</div></div></div></div>
+        <div class="office-card"><div class="office-inner"><div class="office-flag">🇨🇳</div><div><div class="office-city">Guangzhou, China</div><div class="office-role">Asia Sourcing</div><div class="office-email">china@blankotegroup.com</div></div></div></div>
+        <div class="gold-divider" style="margin:24px 0 20px;opacity:0.2;"></div>
+        <div class="contact-details">
+          <div>🌐 www.blankotegroup.com</div>
+          <div>📱 WhatsApp available</div>
+          <div>⏱ Response within 24 hours</div>
+        </div>
+      </div>
+      <div id="contact-form-wrapper">
+        <div class="form-grid">
+          <input class="form-input" id="f-name" placeholder="Your Full Name *" type="text"/>
+          <input class="form-input" id="f-email" placeholder="Email Address *" type="email"/>
+          <input class="form-input" id="f-company" placeholder="Company (optional)" type="text"/>
+          <input class="form-input" id="f-subject" placeholder="Subject" type="text"/>
+        </div>
+        <textarea class="form-input" id="f-message" placeholder="Your message *" rows="6"></textarea>
+        <button class="btn-primary" style="width:100%;" onclick="submitForm()">Send Message</button>
+        <div class="form-note">All inquiries treated with strict confidentiality</div>
+      </div>
+    </div>
+  </div>
+  <div class="contact-bottom">
+    <div class="contact-bottom-tag">TRADING · RESOURCES · GLOBAL</div>
+    <div class="contact-bottom-text">Blankote Group — Building Africa's future, one shipment at a time.</div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <div class="footer-logo">
+          <div class="logo-mark" style="width:32px;height:32px;"><span style="font-size:14px;">B</span></div>
+          <div class="logo-text"><div class="name" style="font-size:13px;">BLANKOTE GROUP</div></div>
+        </div>
+        <div class="footer-info">
+          <div>contact@blankotegroup.com</div>
+          <div>www.blankotegroup.com</div>
+          <div>France · Nigeria · China</div>
+        </div>
+      </div>
+      <div class="footer-cols">
+        <div>
+          <div class="footer-col-title">COMPANY</div>
+          <span class="footer-link" onclick="showPage('home')">Home</span>
+          <span class="footer-link" onclick="showPage('about')">About</span>
+          <span class="footer-link" onclick="showPage('services')">Services</span>
+          <span class="footer-link" onclick="showPage('contact')">Contact</span>
+        </div>
+        <div>
+          <div class="footer-col-title">DIVISIONS</div>
+          <span class="footer-link" onclick="showPage('services')">Trading</span>
+          <span class="footer-link" onclick="showPage('services')">Logistics</span>
+          <span class="footer-link" onclick="showPage('services')">Resources</span>
+          <span class="footer-link" onclick="showPage('services')">Energy</span>
+        </div>
+      </div>
+    </div>
+    <div class="gold-divider" style="opacity:0.15;"></div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2026 Blankote Group. All rights reserved.</div>
+      <div class="footer-tagline">TRADING · RESOURCES · GLOBAL</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+function showPage(id){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.nav-link').forEach(l=>l.classList.remove('active'));
+  document.getElementById('page-'+id).classList.add('active');
+  const map={home:0,about:1,services:2,contact:3};
+  const links=document.querySelectorAll('.nav-link');
+  if(links[map[id]])links[map[id]].classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+  setTimeout(initAnimations,100);
+}
+
+window.addEventListener('scroll',()=>{
+  const nav=document.getElementById('navbar');
+  nav.classList.toggle('scrolled',window.scrollY>60);
+});
+
+function initAnimations(){
+  const obs=new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');}});
+  },{threshold:0.1});
+  document.querySelectorAll('.fade-in,.fade-left').forEach(el=>{
+    if(!el.classList.contains('visible'))obs.observe(el);
+  });
+}
+
+function submitForm(){
+  const name=document.getElementById('f-name').value;
+  const email=document.getElementById('f-email').value;
+  const msg=document.getElementById('f-message').value;
+  if(!name||!email||!msg){alert('Please fill in all required fields.');return;}
+  document.getElementById('contact-form-wrapper').innerHTML=`
+    <div class="success-box">
+      <div class="success-icon">✅</div>
+      <div class="success-title">Message Received</div>
+      <div class="success-desc">Thank you for reaching out to Blankote Group. We will respond within 24 hours.</div>
+    </div>`;
+}
+
+initAnimations();
+</script>
+</body>
+</html>
